@@ -17,11 +17,10 @@ const Create = () => {
 			await api.addMahasiswa({
 				Name, Faculty, NIM, Gender,
 			})
-			history.push('/');
-		}	catch {
-			alert(errors => {
-				console.log(errors);
-			})
+			history.push('/home');
+		}	catch (error) {
+            console.log(error)
+
 		}	finally {
 			setLoading(false);
 		}

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\Mahasiswa as MahasiswaResource;
 use App\Mahasiswa;
+use Illuminate\Support\Facades\Validator;
+
 
 class MahasiswaController extends Controller
 {
@@ -15,6 +17,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
+
         return MahasiswaResource::collection(Mahasiswa::all());
 
     }
@@ -27,14 +30,17 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'Name' => 'required',
+        $validator = Validator::make($request->all(), [
+            'Name' => 'required|min:3',
             'Faculty' => 'required',
             'NIM' => 'required',
-            'Gender' => 'required',
+            'Gender' => '',
         ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
 
-        $post = new Mahasiswa([
+        $mahasiswa = new Mahasiswa([
             'Name' => $request->Name,
             'Faculty' => $request->Faculty,
             'NIM' => $request->NIM,
@@ -42,9 +48,9 @@ class MahasiswaController extends Controller
 
         ]);
 
-        $post->save();
+        $mahasiswa->save();
         return response()->json([
-            'data' => 'Catalog created!'
+            'data' => 'Mahasiswa created!'
         ]);
     }
 
@@ -84,7 +90,7 @@ class MahasiswaController extends Controller
 
         $mahasiswa->update();
         return response()->json([
-            'data' => 'Catalog update!'
+            'data' => 'Mahasiswa update!'
         ]);
     }
 
@@ -99,7 +105,7 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::findOrFail($id);
         $mahasiswa->delete();
         return response()->json([
-            'data' => 'Catalog deleted!'
+            'data' => 'Mahasiswa deleted!'
         ]);
     }
 }

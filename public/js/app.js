@@ -70881,16 +70881,14 @@ var Create = function Create() {
               });
 
             case 4:
-              history.push('/');
+              history.push('/home');
               _context.next = 10;
               break;
 
             case 7:
               _context.prev = 7;
               _context.t0 = _context["catch"](1);
-              alert(function (errors) {
-                console.log(errors);
-              });
+              console.log(_context.t0);
 
             case 10:
               _context.prev = 10;
@@ -71056,7 +71054,7 @@ var Edit = function Edit() {
             case 7:
               _context.prev = 7;
               _context.t0 = _context["catch"](1);
-              alert('Failed to Edit mahasiswa!');
+              console.log(_context.t0);
 
             case 10:
               _context.prev = 10;

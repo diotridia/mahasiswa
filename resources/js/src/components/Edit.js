@@ -19,9 +19,9 @@ const Edit = () => {
 				Name, Faculty, NIM, Gender,
 			}, id);
 			history.push('/');
-		}	catch {
-			alert('Failed to Edit mahasiswa!')
-		}	finally {
+		}	catch (error) {
+            console.log(error)
+          }finally {
 			setLoading(false);
 		}
 	};

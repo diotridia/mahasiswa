@@ -14,7 +14,7 @@ class Mahasiswa extends Migration
     public function up()
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('Name');
             $table->string('Faculty');
             $table->string('NIM');
