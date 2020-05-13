@@ -15,10 +15,10 @@ class Mahasiswa extends Migration
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Name');
-            $table->string('Faculty');
-            $table->string('NIM');
-            $table->string('Gender');
+            $table->string('Name')->nullable();
+            $table->string('Faculty')->nullable();
+            $table->string('NIM')->nullable();
+            $table->string('Gender')->nullable();
             $table->timestamps();
         });
     }
